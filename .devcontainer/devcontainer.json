@@ -1,0 +1,38 @@
+{
+  "name": "Laravel Devcontainer",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".."
+  },
+  "runArgs": [
+    "--runtime=sysbox-runc"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": false
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        "vivaxy.vscode-conventional-commits",
+        "mhutchie.git-graph",
+        "svelte.svelte-vscode",
+        "bmewburn.vscode-intelephense-client",
+        "laravel.vscode-laravel",
+        "bradlc.vscode-tailwindcss",
+        "aaron-bond.better-comments"
+      ],
+      "settings": {
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "echo \"alias sail='./vendor/bin/sail'\" >> ~/.bashrc",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/var/www/html,type=bind,consistency=cached",
+  "workspaceFolder": "/var/www/html",
+  "remoteUser": "admin"
+}
